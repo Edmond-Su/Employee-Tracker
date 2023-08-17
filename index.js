@@ -36,7 +36,9 @@ function init(){
         )
         .then((answers)=>{
             console.log(answers);
-            if (answers.options === "viewDep"){
+            if (answers.options === "quit"){
+                process.exit();
+            }else if (answers.options === "viewDep"){
                 const sql = "SELECT * FROM department;";
                 db.query(sql, function(err,results){
                     if (err){
