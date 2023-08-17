@@ -35,7 +35,7 @@ function init(){
             }
         )
         .then((answers)=>{
-            console.log(answers);
+            //if and else if statements that run through different code depending on the answer.
             if (answers.options === "quit"){
                 process.exit();
             }else if (answers.options === "viewDep"){
@@ -68,8 +68,15 @@ function init(){
                     init();
                 })
             }else if (answers.options === "addDep"){
+                console.log(answers);
                 addDep();
-                init();
+
+            }else if (answers.options === "addRole"){
+                console.log(answers);
+            }else if (answers.options === "addEmp"){
+                console.log(answers);
+            }else if (answers.options === "updEmp"){
+                console.log(answers);
             }
         });
 };
@@ -84,8 +91,14 @@ function addDep(){
             }
         )
         .then((answers)=>{
-            db.execute(`INSERT INTO department(id,name) VALUES(,"${answers.depName}"`)
-            return console.log(`Added ${answers.depName} to the database`)
+            db.query(`INSERT INTO department(name) VALUES(${answers.depName})`, function(err,result) {
+                if (err){
+                    console.log("Error occured");
+                }else {
+                    console.log(`Added ${answers.depName} to the database`)
+                }
+                init()
+            });
         });
 };
 
